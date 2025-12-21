@@ -76,11 +76,11 @@
         </div>
       </div>
       <aside class="right">
-        <div class="sub-title">Most Popular</div>
+        <div class="sub-title line">Most Popular</div>
         <ul class="popular-list">
           <?php
           $groups = ($display > 0) ? intval($display / 3) : 1;
-          $popular_count = max(10, $groups * 10);
+          $popular_count = max(8, $groups * 8);
           $pop = new WP_Query([
             'post_type' => 'post',
             'posts_per_page' => $popular_count,
@@ -92,7 +92,7 @@
           ?>
             <li>
               <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              <span class="meta"><?php echo esc_html(get_the_category()[0]->name ?? ''); ?> • <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')); ?> ago</span>
+              <span class="meta"><span class="cat"><?php echo esc_html(get_the_category()[0]->name ?? ''); ?></span> <span class="sep">//</span> <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')); ?> ago</span>
             </li>
           <?php } wp_reset_postdata(); ?>
         </ul>

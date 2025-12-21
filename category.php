@@ -103,7 +103,7 @@
           while ($pop->have_posts()) { $pop->the_post(); ?>
             <li>
               <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              <span class="meta"><?php echo esc_html(get_the_category()[0]->name ?? ''); ?> • <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')); ?> ago</span>
+              <span class="meta"><span class="cat"><?php echo esc_html(get_the_category()[0]->name ?? ''); ?></span> <span class="sep">//</span> <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')); ?> ago</span>
             </li>
           <?php } wp_reset_postdata(); ?>
         </ul>

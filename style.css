@@ -221,6 +221,15 @@ body.search-open .trending { display: none; }
   grid-template-columns: 2fr 1fr;
   gap: 24px;
 }
+.two-col.narrow-left {
+  grid-template-columns: 720px 340px;
+  justify-content: space-between;
+}
+@media (max-width: 1100px) {
+  .two-col.narrow-left {
+    grid-template-columns: 1fr;
+  }
+}
 .two-col .right {
   align-self: stretch;
   border-left: none;
@@ -315,18 +324,23 @@ body.search-open .trending { display: none; }
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 10px;
+  gap: 0;
 }
+.popular-list li { padding: 12px 0; }
+.popular-list li + li { border-top: 1px solid #eee; }
 .popular-list a {
   text-decoration: none;
   color: var(--text);
   font-weight: 700;
+  font-size: 16px;
 }
 .popular-list .meta {
   display: block;
   color: var(--muted);
   font-size: 12px;
+  font-style: italic;
 }
+.popular-list .meta .sep { opacity: .45; }
 .headlines-list {
   display: grid;
   gap: 18px;
@@ -339,21 +353,34 @@ body.search-open .trending { display: none; }
   border-top: 1px solid #eee;
   padding-top: 16px;
 }
+.headline-item.left-thumb {
+  grid-template-columns: 200px 1fr;
+  align-items: start;
+}
+.headline-item.left-thumb .thumb img {
+  width: 200px;
+  height: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
 .headline-item .meta {
   color: var(--muted);
   font-size: 12px;
+  font-style: italic;
   margin-bottom: 6px;
 }
 .headline-item .meta .sep { opacity: .45; }
 .headline-item .title {
   font-weight: 800;
-  font-size: 22px;
+  font-size: 20px;
   text-decoration: none;
   color: var(--text);
 }
 .headline-item .excerpt {
   color: var(--muted);
   font-size: 14px;
+  margin-top: 6px;
 }
 .headline-item .thumb img {
   width: 100%;
@@ -378,6 +405,131 @@ body.search-open .trending { display: none; }
   font-size: 18px;
   line-height: 1.2;
   text-decoration: none;
+}
+.post-header .post-meta {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.post-header .post-title {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 2px 0 4px;
+}
+.post-byline {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+.post-byline a { color: var(--accent); text-decoration: none; font-weight: 700; }
+.byline-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+.share-actions {
+  display: inline-flex;
+  gap: 8px;
+  margin-bottom: 0;
+}
+.share-actions .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #eaeaea;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 700;
+}
+.share-actions .btn:hover { color: var(--accent); }
+.post-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.trending-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.trending-list li {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  gap: 12px;
+  align-items: center;
+}
+.trending-list li + li {
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+}
+.trending-list .title {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 14px;
+}
+.trending-list .thumb img {
+  width: 80px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+.topics {
+  margin: 8px 0 12px;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.topics .label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.topics .tag-list a {
+  text-decoration: none;
+  color: var(--text);
+  background: #f6f6f6;
+  border: 1px solid #eee;
+  padding: 4px 8px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 6px;
+}
+.topics .tag-list a:hover { color: var(--accent); border-color: var(--accent); }
+.read-more {
+  border-top: 1px solid #eaeaea;
+  margin: 12px 0;
+  padding-top: 10px;
+}
+.read-more .sub-title { margin-bottom: 8px; }
+.read-more-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.read-more-list li + li {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+.read-more-list a {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 700;
 }
 .site-footer {
   border-top: 1px solid #eaeaea;
