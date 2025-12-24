@@ -57,6 +57,8 @@ a { text-decoration: none; color: inherit; }
   color: var(--text);
   font-weight: 600;
   font-size: 14px;
+  padding: 10px 8px;
+  display: inline-block;
 }
 .primary-nav a:hover {
   color: var(--accent);
@@ -70,6 +72,9 @@ a { text-decoration: none; color: inherit; }
   background: transparent;
   cursor: pointer;
   font-size: 18px;
+  padding: 12px;
+  min-width: 44px;
+  min-height: 44px;
 }
 .header-search { display: none; margin-left: auto; }
 /* header search mode */
@@ -85,8 +90,8 @@ body.search-open .trending { display: none; }
   border: none;
   background: var(--accent);
   color: #fff;
-  height: 34px;
-  width: 34px;
+  height: 44px;
+  width: 44px;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -440,8 +445,9 @@ body.search-open .trending { display: none; }
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
+  gap: 0;
   border: 1px solid #eaeaea;
   color: var(--muted);
   text-decoration: none;
@@ -462,6 +468,7 @@ body.search-open .trending { display: none; }
   display: grid;
   gap: 12px;
 }
+.trending-list + .sub-title { margin-top: 24px; }
 .trending-list li {
   display: grid;
   grid-template-columns: 1fr 80px;
@@ -484,6 +491,27 @@ body.search-open .trending { display: none; }
   object-fit: cover;
   border-radius: 4px;
   display: block;
+}
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+}
+.post-content table th,
+.post-content table td {
+  border: 1px solid #eaeaea;
+}
+.post-content table thead th {
+  border-top: none;
+  border-bottom: 1px solid #eaeaea;
+  font-weight: 700;
+}
+.post-content table th + th,
+.post-content table td + td {
+  border-left: 1px solid #eaeaea;
+}
+.post-content table tbody tr:first-child td {
+  border-top: none;
 }
 .topics {
   margin: 8px 0 12px;
@@ -639,6 +667,10 @@ body.search-open .trending { display: none; }
   color: var(--muted);
   opacity: .5;
   pointer-events: none;
+}
+@media (pointer: coarse) {
+  .primary-nav a { padding: 12px 10px; }
+  .share-actions { gap: 10px; }
 }
 .load-more.loading::after {
   content: "";

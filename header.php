@@ -4,6 +4,22 @@
 <head>
 <meta charset="<?php bloginfo('charset'); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
+  $desc = '';
+  if (is_single() || is_page()) {
+    $excerpt = get_the_excerpt();
+    $desc = $excerpt ? wp_trim_words($excerpt, 30) : get_bloginfo('description');
+  } elseif (is_category()) {
+    $cat = get_queried_object();
+    $desc = $cat && !empty($cat->description) ? wp_trim_words($cat->description, 30) : ('Latest posts in ' . ($cat->name ?? 'Category'));
+  } elseif (is_search()) {
+    $q = get_search_query();
+    $desc = $q ? ('Search results for "' . $q . '"') : get_bloginfo('description');
+  } else {
+    $desc = get_bloginfo('description');
+  }
+?>
+<meta name="description" content="<?php echo esc_attr($desc); ?>">
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> id="top">

@@ -22,8 +22,8 @@
                       <a href="<?php the_permalink(); ?>" class="title"><?php the_title(); ?></a>
                       <div class="excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 28)); ?></div>
                     </div>
-                    <a href="<?php the_permalink(); ?>" class="thumb">
-                      <?php if (has_post_thumbnail()) the_post_thumbnail('medium_large'); ?>
+                    <a href="<?php the_permalink(); ?>" class="thumb" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+                      <?php if (has_post_thumbnail()) the_post_thumbnail('medium_large', ['alt' => esc_attr(get_the_title())]); ?>
                     </a>
                   </article>
                   <?php
@@ -46,8 +46,8 @@
                       <a href="<?php the_permalink(); ?>" class="title"><?php the_title(); ?></a>
                       <div class="excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 28)); ?></div>
                     </div>
-                    <a href="<?php the_permalink(); ?>" class="thumb">
-                      <?php if (has_post_thumbnail()) the_post_thumbnail('medium_large'); ?>
+                    <a href="<?php the_permalink(); ?>" class="thumb" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+                      <?php if (has_post_thumbnail()) the_post_thumbnail('medium_large', ['alt' => esc_attr(get_the_title())]); ?>
                     </a>
                   </article>
                   <?php

@@ -11,8 +11,8 @@
   ?>
   <section class="grid">
     <article class="hero">
-      <a href="<?php the_permalink(); ?>">
-        <?php if (has_post_thumbnail()) the_post_thumbnail('large'); ?>
+      <a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+        <?php if (has_post_thumbnail()) the_post_thumbnail('large', ['alt' => esc_attr(get_the_title())]); ?>
       </a>
       <div class="overlay">
         <a href="<?php the_permalink(); ?>" class="title"><?php the_title(); ?></a>
@@ -26,8 +26,8 @@
         $count++;
       ?>
       <article class="tile">
-        <a href="<?php the_permalink(); ?>">
-          <?php if (has_post_thumbnail()) the_post_thumbnail('medium'); ?>
+        <a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+          <?php if (has_post_thumbnail()) the_post_thumbnail('medium', ['alt' => esc_attr(get_the_title())]); ?>
         </a>
         <a href="<?php the_permalink(); ?>" class="caption"><?php the_title(); ?></a>
       </article>
@@ -59,8 +59,8 @@
             <div class="cat-block">
               <a class="badge" href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"><?php echo esc_html($cat->name); ?></a>
               <article class="lead">
-                <a href="<?php the_permalink(); ?>">
-                  <?php if (has_post_thumbnail()) the_post_thumbnail('large'); ?>
+                <a href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+                  <?php if (has_post_thumbnail()) the_post_thumbnail('large', ['alt' => esc_attr(get_the_title())]); ?>
                 </a>
                 <a href="<?php the_permalink(); ?>" class="title"><?php the_title(); ?></a>
               </article>
@@ -120,8 +120,8 @@
               <a href="<?php the_permalink(); ?>" class="title"><?php the_title(); ?></a>
               <div class="excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt(), 28)); ?></div>
             </div>
-            <a href="<?php the_permalink(); ?>" class="thumb">
-              <?php if (has_post_thumbnail()) the_post_thumbnail('medium_large'); ?>
+            <a href="<?php the_permalink(); ?>" class="thumb" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+              <?php if (has_post_thumbnail()) the_post_thumbnail('medium_large', ['alt' => esc_attr(get_the_title())]); ?>
             </a>
           </article>
       <?php } wp_reset_postdata(); ?>

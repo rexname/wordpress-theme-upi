@@ -62,8 +62,8 @@
             ]);
             while ($latest->have_posts()) { $latest->the_post(); ?>
               <article class="headline-item left-thumb">
-                <a href="<?php the_permalink(); ?>" class="thumb">
-                  <?php if (has_post_thumbnail()) the_post_thumbnail('medium'); ?>
+                <a href="<?php the_permalink(); ?>" class="thumb" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+                  <?php if (has_post_thumbnail()) the_post_thumbnail('medium', ['alt' => esc_attr(get_the_title())]); ?>
                 </a>
                 <div class="text">
                   <?php
@@ -92,9 +92,32 @@
             while ($trend->have_posts()) { $trend->the_post(); ?>
               <li>
                 <a href="<?php the_permalink(); ?>" class="title"><?php the_title(); ?></a>
-                <a href="<?php the_permalink(); ?>" class="thumb">
-                  <?php if (has_post_thumbnail()) the_post_thumbnail('thumbnail'); ?>
+                <a href="<?php the_permalink(); ?>" class="thumb" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+                  <?php if (has_post_thumbnail()) the_post_thumbnail('thumbnail', ['alt' => esc_attr(get_the_title())]); ?>
                 </a>
+              </li>
+            <?php } wp_reset_postdata(); ?>
+          </ul>
+          <?php
+            $cats = get_the_category();
+            $cat_id = $cats ? $cats[0]->term_id : 0;
+          ?>
+          <div class="sub-title line">More From Category</div>
+          <ul class="popular-list">
+            <?php
+            $morecat = new WP_Query([
+              'post_type' => 'post',
+              'cat' => $cat_id,
+              'posts_per_page' => 6,
+              'post__not_in' => [get_the_ID()],
+              'ignore_sticky_posts' => true,
+              'orderby' => 'date',
+              'order' => 'DESC',
+            ]);
+            while ($morecat->have_posts()) { $morecat->the_post(); ?>
+              <li>
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                <span class="meta"><span class="cat"><?php echo esc_html(get_the_category()[0]->name ?? ''); ?></span> <span class="sep">//</span> <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')); ?> ago</span>
               </li>
             <?php } wp_reset_postdata(); ?>
           </ul>
