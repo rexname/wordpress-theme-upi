@@ -50,3 +50,40 @@
     </div>
   </div>
 </header>
+
+<div class="trending-ticker">
+  <div class="container">
+    <div class="ticker-wrapper">
+      <span class="ticker-label">TRENDING</span>
+      <div class="ticker-list">
+        <?php
+        $trending = new WP_Query([
+          'post_type' => 'post',
+          'posts_per_page' => 8,
+          'orderby' => 'comment_count',
+          'order' => 'DESC',
+          'date_query' => [['after' => '1 month ago']],
+        ]);
+        if (!$trending->have_posts()) {
+          $trending = new WP_Query([
+            'post_type' => 'post',
+            'posts_per_page' => 8,
+            'orderby' => 'date',
+            'order' => 'DESC',
+          ]);
+        }
+        $count = 0;
+        while ($trending->have_posts()) : $trending->the_post();
+          if ($count > 0) echo '<span class="sep">|</span>';
+          ?>
+          <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+          <?php
+          $count++;
+        endwhile;
+        wp_reset_postdata();
+        ?>
+      </div>
+    </div>
+  </div>
+</div>
+
