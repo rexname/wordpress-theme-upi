@@ -80,7 +80,7 @@
         <ul class="popular-list">
           <?php
           $groups = ($display > 0) ? intval($display / 3) : 1;
-          $popular_count = max(8, $groups * 8);
+          $popular_count = max(8, $groups * 4);
           $pop = new WP_Query([
             'post_type' => 'post',
             'posts_per_page' => $popular_count,
